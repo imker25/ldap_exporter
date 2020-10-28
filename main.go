@@ -12,8 +12,8 @@ import (
 	"os"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/log"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/common/log"
 	"gopkg.in/ldap.v2"
 )
 
@@ -31,6 +31,7 @@ var (
 
 	disableVendorMetrics = flag.Bool("metrics.disable-vendor-metrics", false, "By default, try to identify the LDAP vendor and load metrics for thhat vendor.  If the vendor cannot be identified or if this is enabled,, -metrics.config must be set.")
 	queryFile            = flag.String("metrics.config", "", "YAML file holding ldap -> metrics queries.  Note if the LDAP vendor cannot be identified, this must be set")
+	debugOutput          = flag.Bool("debug.output", false, "Enable debug log output")
 )
 
 func createTLSConfigFromFlags() (*tls.Config, error) {
@@ -103,6 +104,10 @@ func createLdapClientFromFlags(ldap_uri string, serverName string, tls_config *t
 
 func main() {
 	flag.Parse()
+
+	if *debugOutput {
+		log.Base().SetLevel("Debug")
+	}
 
 	tls_config, err := createTLSConfigFromFlags()
 	if err != nil {

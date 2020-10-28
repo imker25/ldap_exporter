@@ -15,6 +15,8 @@ This exporter allows for configurable tree attributes to be exposed as prometheu
 
 ```sh
 Usage of ./ldap_exporter:
+  -debug.output
+    	Enable debug log output
   -ldap.bind string
     	Ldap DN to bind to
   -ldap.password string
