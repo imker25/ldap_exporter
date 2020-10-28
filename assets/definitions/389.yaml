@@ -94,7 +94,7 @@
     metrics:
       monitorCounter:
         type: counter
-        help: "Database size in Bytes"
+        help: "Data transferred in Bytes"
 - name: OpenThreads
   search: 'cn=Open,cn=Threads,cn=Monitor'
   filter: '(objectClass=*)'
@@ -158,7 +158,7 @@
     metrics:
       monitorCounter:
         type: counter
-        help: "Number of Database Entries" 
+        help: "Number of Database Entry Access" 
 - name: ConnectionsCount
   search: 'cn=Total,cn=Connections,cn=Monitor'
   filter: '(objectClass=*)'
